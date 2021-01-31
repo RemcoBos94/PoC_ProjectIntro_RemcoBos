@@ -1,0 +1,155 @@
+import numpy as np
+import pandas as pd
+
+excel_file = 'workbook1.xlsx'
+df = pd.read_excel(excel_file, sheet_name=0)
+print(df)
+
+
+
+for col in df.columns:
+    if df[col].str.contains('Remco').any():
+        out='True'
+        break
+
+    print(out)
+
+
+
+
+
+excel_file = 'workbook1.xlsx'
+data = pd.ExcelFile(excel_file)
+
+print(data.sheet_names)
+
+df = data.parse('Tabelle1')
+df.info
+
+ps = openpyxl.load_workbook('workbook1.xlsx')
+sheet = ps['Tabelle1']
+
+print(sheet.max_row)
+
+
+searching for strings in excel file
+
+print('1')
+
+filteredData = df[df['Name'].str.contains('R')]
+print(filteredData)
+
+
+print('r')
+filteredData2= df[df.apply(lambda row: row.astype(str).str.contains('R').any(), axis=1)]
+print(filteredData2)
+
+
+out = True
+if filteredData2.empty:
+    out = 'False'
+
+print(out)
+
+
+
+
+
+canvas = tk.Canvas(root, height=600, width=400, bg="#263d42")
+
+canvas.pack()
+
+frame = tk.Frame(root, bg="#3e646c")
+
+frame.place(relwidth=0.8, relheight=0.8, rely=0.1, relx=0.1)
+
+root.mainloop
+
+
+https://stackoverflow.com/questions/37397037/looping-through-multiple-excel-files-in-python-using-pandas
+
+
+df1 = pd.read_excel(FileList[0])
+df2 = pd.read_excel(FileList[1])
+
+variable = "Opa"
+filteredData1= df1[df1.apply(lambda row: row.astype(str).str.contains(variable).any(), axis=1)]
+print(filteredData1)
+
+
+filteredData2= df2[df2.apply(lambda row: row.astype(str).str.contains(variable).any(), axis=1)]
+print(filteredData2)
+
+
+
+import tkinter as tk
+from tkinter import filedialog, Text
+import os
+import searchFunction2
+
+
+root = tk.Tk()
+
+
+
+def addFolder():
+    folderPath = filedialog.askdirectory(title="Select Folder")
+    print(folderPath)
+    label = tk.Label(frame, text=input4, bg="gray")
+    label.pack()
+
+
+def addDestination():
+    folderDestination = filedialog.askdirectory(title="Select Folder")
+    print(folderDestination)
+    label = tk.Label(frame, text=input5, bg="gray")
+    label.pack()
+
+
+
+
+
+canvas = tk.Canvas(root, height=700, width=700, bg="#263D42")
+canvas.pack()
+
+
+
+frame = tk.Frame(root, bg="white")
+frame.place(relwidth=0.8, relheight=0.8, relx=0.1, rely=0.1)
+
+searchInFolder = tk.Button(frame, text="Select Folder", padx=10, pady=5, fg="white", bg="#263D42", command=addFolder)
+searchInFolder.pack()
+
+
+
+
+searchFiles = tk.Button(frame, text="Search Files", padx=10, pady=5, fg="white", bg="#263D42", command=searchFunction2.searchFunction)
+searchFiles.pack()
+
+
+root.mainloop()
+
+
+
+    if (test4.empty):
+            print("Please select a folder with excel files")
+    else:
+        if(test5.empty):
+            print("Please select a destination folder")
+        else:
+            if(test1.empty):
+                print("Please give in a string to search for")
+            else:
+                if(test2.empty and test3.empty):
+                    searchFunction1.sf1()
+                else:
+                    if(test2.empty):
+                        print("Please give two strings in in input 1 and 2")
+                    else:
+                        if(test3.empty):
+                            searchFunction2.sf2()
+                        else:
+                            searchFunction3.sf3()
+
+
+
